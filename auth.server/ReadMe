@@ -19,13 +19,13 @@ C# + Vue Template Setup
 3. NPM & Git
 	cd {{Project Name}}.server
 		dotnet new gitignore
-		git add
+		git add .
 		npm i
 		cd..
 
 	cd {{Project Name}}.client
-		git add
-		npm i
+		git add .
+		npm i => npm audit fix if necessary
 		cd..
 
 	git init
