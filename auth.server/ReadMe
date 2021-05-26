@@ -1,0 +1,129 @@
+C# + Vue Template Setup
+
+
+
+1. From Command Line:
+	md {{Project Name}}
+
+
+
+2. Inside Project:
+	bcw-create {{Project Name}}-client
+		Vue Starter
+		Rename to {{Project Name}}.client
+
+	dotnet new webapi -o {{Project Name}}.server
+
+
+
+3. NPM & Git
+	cd {{Project Name}}.server
+		dotnet new gitignore
+		git add
+		npm i
+		cd..
+
+	cd {{Project Name}}.client
+		git add
+		npm i
+		cd..
+
+	git init
+
+	code auth.code-workspace
+		Opens up Workspace File
+
+
+
+4. Paste Workspace Doc:
+{
+    "folders": [
+        {
+            "path": "{{PROJECT NAME}}.client",
+            "name": "Client"
+        },
+        {
+            "path": "{{PROJECT NAME}}.server",
+            "name": "Server"
+        }
+    ],
+    "settings": {
+        "editor.suggestSelection": "first",
+        "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+        "workbench.iconTheme": "vscode-icons",
+        "git.enableSmartCommit": true,
+        "git.confirmSync": false,
+        "git.autofetch": true,
+        "javascript.referencesCodeLens.enabled": true,
+        "javascript.referencesCodeLens.showOnAllFunctions": true,
+        "typescript.implementationsCodeLens.enabled": true,
+        "typescript.referencesCodeLens.enabled": true,
+        "typescript.referencesCodeLens.showOnAllFunctions": true,
+        "javascript.implicitProjectConfig.checkJs": true,
+        "files.exclude": {
+            "**/.nyc_*": true,
+            "**/coverage": true,
+            "**/node_modules": true
+        },
+        "javascript.updateImportsOnFileMove.enabled": "always",
+        "explorer.confirmDragAndDrop": false,
+        "vetur.format.defaultFormatter.js": "vscode-typescript",
+        "eslint.alwaysShowStatus": true,
+        "eslint.format.enable": true,
+        "eslint.lintTask.enable": true,
+        "eslint.codeActionsOnSave.mode": "all",
+        "editor.codeActionsOnSave": {
+            "source.fixAll": true
+        },
+        "[json]": {
+            "breadcrumbs.showEvents": true,
+            "editor.quickSuggestions": {
+                "strings": true
+            },
+            "editor.suggest.insertMode": "replace"
+        }
+    }
+}
+
+
+
+5. Open {{Project Name}}.server
+	Add Packages through "Nuget":
+        *ctrl* 'p' => ">nuget" => "Add Package" =>
+               	"CodeWorks.Auth0Provider"
+               	"microsoft.aspnetcore.authentication.jwtbearer"
+               	"MySqlConnector"
+               	"Dapper"
+        You can also look up all your downloaded packages in "{{Project Name}}.csproj"
+
+
+
+6. Open Workspace
+	In Client:
+	Paste Auth info into env.js:
+export const baseURL = dev ? 'http://localhost:5001' : ''
+export const domain = 'samwise.us.auth0.com'
+export const audience = 'https://test-api.com'
+export const clientId = 'mC2vIZZ2G5J7rtlFOcbUWkcQSygfUbBF'
+
+	In Server:
+	Paste Sql DB Connection + Auth into Server Appsettings:
+"DB": {
+	"gearhost": "server=den1.mysql1.gear.host;port=3306;database=samwisetestdb;user id=samwisetestdb;password=Gr5HHjU_os-b"
+  },
+"Auth0": {
+    	"Domain": "samwise.us.auth0.com",
+    	"Audience": "https://test-api.com",
+    	"ClientId": "mC2vIZZ2G5J7rtlFOcbUWkcQSygfUbBF"
+  }
+
+	Add appsettings.* to gitignore
+
+
+
+7. Auth Hookups
+	Remove Controllers Folder & Weather
+	Paste Models, Controllers, Services, and Repositories Folders
+	Rename namespaces to {{Project Name}}.server
+
+	Paste template code into Startup.cs
