@@ -3,27 +3,27 @@ C# + Vue Template Setup
 
 
 1. From Command Line:
-	md {{Project Name}}
+	md {{PROJECT NAME}}
 
 
 
 2. Inside Project:
-	bcw-create {{Project Name}}-client
+	bcw-create {{PROJECT NAME}}-client
 		Vue Starter
-		Rename to {{Project Name}}.client
+		Rename to {{PROJECT NAME}}.client
 
-	dotnet new webapi -o {{Project Name}}.server
+	dotnet new webapi -o {{PROJECT NAME}}.server
 
 
 
 3. NPM & Git
-	cd {{Project Name}}.server
+	cd {{PROJECT NAME}}.server
 		dotnet new gitignore
 		git add .
 		npm i
 		cd..
 
-	cd {{Project Name}}.client
+	cd {{PROJECT NAME}}.client
 		git add .
 		npm i => npm audit fix if necessary
 		cd..
@@ -87,14 +87,14 @@ C# + Vue Template Setup
 
 
 
-5. Open {{Project Name}}.server
+5. Open {{PROJECT NAME}}.server
 	Add Packages through "Nuget":
         *ctrl* 'p' => ">nuget" => "Add Package" =>
                	"CodeWorks.Auth0Provider"
                	"microsoft.aspnetcore.authentication.jwtbearer"
                	"MySqlConnector"
                	"Dapper"
-        You can also look up all your downloaded packages in "{{Project Name}}.csproj"
+        You can also look up all your downloaded packages in "{{PROJECT NAME}}.csproj"
 
 
 
@@ -102,19 +102,19 @@ C# + Vue Template Setup
 	In Client:
 	Paste Auth info into env.js:
 export const baseURL = dev ? 'http://localhost:5001' : ''
-export const domain = 'samwise.us.auth0.com'
-export const audience = 'https://test-api.com'
-export const clientId = 'mC2vIZZ2G5J7rtlFOcbUWkcQSygfUbBF'
+export const domain = '{{AUTH DOMAIN}}'
+export const audience = '{{AUTH AUDIENCE}}'
+export const clientId = '{{AUTH CLIENTID}}'
 
 	In Server:
 	Paste Sql DB Connection + Auth into Server Appsettings:
 "DB": {
-	"gearhost": "server=den1.mysql1.gear.host;port=3306;database=samwisetestdb;user id=samwisetestdb;password=Gr5HHjU_os-b"
+	"gearhost": "server={{HOST}};port=3306;database={{USERNAME}};user id={{USERNAME}};password={{PASSWORD}}"
   },
 "Auth0": {
-    	"Domain": "samwise.us.auth0.com",
-    	"Audience": "https://test-api.com",
-    	"ClientId": "mC2vIZZ2G5J7rtlFOcbUWkcQSygfUbBF"
+    	"Domain": "{{AUTH DOMAIN}}",
+    	"Audience": "{{AUTH AUDIENCE}}",
+    	"ClientId": "{{AUTH CLIENTID}}"
   }
 
 	Add appsettings.* to gitignore
@@ -124,6 +124,6 @@ export const clientId = 'mC2vIZZ2G5J7rtlFOcbUWkcQSygfUbBF'
 7. Auth Hookups
 	Remove Controllers Folder & Weather
 	Paste Models, Controllers, Services, and Repositories Folders
-	Rename namespaces to {{Project Name}}.server
+	Rename namespaces to {{PROJECT NAME}}.server
 
 	Paste template code into Startup.cs
