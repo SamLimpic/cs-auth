@@ -8,8 +8,9 @@ C# + Vue Template Setup
 
 
 2. Inside Project:
-	bcw-create {{PROJECT NAME}}-client
+	bcw-create
 		Vue Starter
+        {{PROJECT NAME}}-client
 		Rename to {{PROJECT NAME}}.client
 
 	dotnet new webapi -o {{PROJECT NAME}}.server
@@ -30,7 +31,7 @@ C# + Vue Template Setup
 
 	git init
 
-	code auth.code-workspace
+	code {{PROJECT NAME}}.code-workspace
 		Opens up Workspace File
 
 
