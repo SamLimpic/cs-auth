@@ -16,6 +16,7 @@ namespace auth.server.Controllers
 
     public class AccountController : ControllerBase
     {
+        // NOTE readonly means the property can only be set in the constructor and cannot be modified outside of it
         private readonly AccountsService _service;
 
         public AccountController(AccountsService service)
