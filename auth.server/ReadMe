@@ -15,28 +15,57 @@ C# + Vue Template Setup
 
 	dotnet new webapi -o {{PROJECT NAME}}.server
 
+    git init
 
 
-3. NPM & Git
+
+3. Open Server:
 	cd {{PROJECT NAME}}.server
 		dotnet new gitignore
 		git add .
 		npm i
-		cd..
+        code .
 
+    replace the <ItemGroup> inside {{PROJECT NAME}}.server.csproj
+<ItemGroup>
+  <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3"/>
+  <PackageReference Include="CodeWorks.Auth0Provider" Version="1.0.3"/>
+  <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.6"/>
+  <PackageReference Include="MySqlConnector" Version="1.3.8"/>
+  <PackageReference Include="Dapper" Version="2.0.90"/>
+</ItemGroup>
+
+    Paste Sql DB Connection + Auth into Server Appsettings:
+"DB": {
+	"gearhost": "server=den1.mysql1.gear.host;port=3306;database=samwisetestdb;user id=samwisetestdb;password=Gr5HHjU_os-b"
+  },
+"Auth0": {
+    	"Domain": "samwise.us.auth0.com",
+    	"Audience": "https://test-api.com",
+    	"ClientId": "mC2vIZZ2G5J7rtlFOcbUWkcQSygfUbBF"
+  }
+
+	Add appsettings.* to gitignore
+
+
+
+4. Open Client:
 	cd {{PROJECT NAME}}.client
 		git add .
 		npm i => npm audit fix if necessary
-		cd..
+		code .
 
-	git init
+    Paste Auth info into env.js:
+export const baseURL = dev ? 'http://localhost:5001' : ''
+export const domain = 'samwise.us.auth0.com'
+export const audience = 'https://test-api.com'
+export const clientId = 'mC2vIZZ2G5J7rtlFOcbUWkcQSygfUbBF'
 
-	code {{PROJECT NAME}}.code-workspace
-		Opens up Workspace File
 
 
-
-4. Paste Workspace Doc:
+5. Open Workspace Doc:
+    code {{PROJECT NAME}}.code-workspace
+    paste entire Object into Workspace Doc
 {
     "folders": [
         {
@@ -60,11 +89,13 @@ C# + Vue Template Setup
         "typescript.implementationsCodeLens.enabled": true,
         "typescript.referencesCodeLens.enabled": true,
         "typescript.referencesCodeLens.showOnAllFunctions": true,
-        "javascript.implicitProjectConfig.checkJs": true,
+        "js/ts.implicitProjectConfig.checkJs": true,
         "files.exclude": {
             "**/.nyc_*": true,
             "**/coverage": true,
-            "**/node_modules": true
+            "**/node_modules": true,
+            "**/bin": true,
+            "**/obj": true
         },
         "javascript.updateImportsOnFileMove.enabled": "always",
         "explorer.confirmDragAndDrop": false,
@@ -85,40 +116,6 @@ C# + Vue Template Setup
         }
     }
 }
-
-
-
-5. Open {{PROJECT NAME}}.server
-	Add Packages through "Nuget":
-        *ctrl* 'p' => ">nuget" => "Add Package" =>
-               	"CodeWorks.Auth0Provider"
-               	"microsoft.aspnetcore.authentication.jwtbearer"
-               	"MySqlConnector"
-               	"Dapper"
-        You can also look up all your downloaded packages in "{{PROJECT NAME}}.csproj"
-
-
-
-6. Open Workspace
-	In Client:
-	Paste Auth info into env.js:
-export const baseURL = dev ? 'http://localhost:5001' : ''
-export const domain = 'samwise.us.auth0.com'
-export const audience = 'https://test-api.com'
-export const clientId = 'mC2vIZZ2G5J7rtlFOcbUWkcQSygfUbBF'
-
-	In Server:
-	Paste Sql DB Connection + Auth into Server Appsettings:
-"DB": {
-	"gearhost": "server=den1.mysql1.gear.host;port=3306;database=samwisetestdb;user id=samwisetestdb;password=Gr5HHjU_os-b"
-  },
-"Auth0": {
-    	"Domain": "samwise.us.auth0.com",
-    	"Audience": "https://test-api.com",
-    	"ClientId": "mC2vIZZ2G5J7rtlFOcbUWkcQSygfUbBF"
-  }
-
-	Add appsettings.* to gitignore
 
 
 
