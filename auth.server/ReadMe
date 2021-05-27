@@ -64,7 +64,8 @@ export const audience = 'https://test-api.com'
 export const clientId = 'mC2vIZZ2G5J7rtlFOcbUWkcQSygfUbBF'
 
     In vue.config.js
-        Replace outputDir: '../{{PROJECT NAME}}.server/wwwroot';
+        Replace:
+            outputDir: '../{{PROJECT NAME}}.server/wwwroot',
 
 
 
