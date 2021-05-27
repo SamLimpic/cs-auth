@@ -32,7 +32,7 @@ namespace auth.server
         public void ConfigureServices(IServiceCollection services)
         {
 
-            // TODO[epic=Auth] copy/paste
+            // STUB[epic=Auth] copy/paste
             services.AddAuthentication(options =>
               {
                   options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -62,9 +62,10 @@ namespace auth.server
 
             services.AddScoped<AccountsRepository>();
 
-            // TODO[epic=DB] database Connection
             services.AddScoped<IDbConnection>(x => CreateDbConnection());
             // end copy/paste
+
+
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -74,12 +75,17 @@ namespace auth.server
         }
 
 
-        // TODO[epic=DB] database Connection
+
+        // STUB[epic=DB] database Connection
         private IDbConnection CreateDbConnection()
         {
             string connectionString = Configuration["DB:gearhost"];
             return new MySqlConnection(connectionString);
         }
+        // end copy/paste
+
+
+
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
@@ -88,14 +94,37 @@ namespace auth.server
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "auth.server v1"));
+
+
+
+                // STUB[epic=Auth] Invoke your Cors
+                app.UseCors("CorsDevPolicy");
+                // end copy/paste
+
+
+
             }
 
             app.UseHttpsRedirection();
 
+
+
+            // STUB Add Default and Static Files
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
+            // end copy/paste
+
+
+
             app.UseRouting();
 
-            // TODO[epic=Auth] Add Authentication so bearer gets validated
+
+
+            // STUB[epic=Auth] Add Authentication so bearer gets validated
             app.UseAuthentication();
+            // end copy/paste
+
+
 
             app.UseAuthorization();
 
