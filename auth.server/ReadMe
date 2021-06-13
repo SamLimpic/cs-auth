@@ -23,7 +23,7 @@ C# + Vue Template Setup
 	cd {{PROJECT NAME}}.server
 		dotnet new gitignore
 		git add .
-		npm i
+		dotnet restore
         code .
 
     replace the <ItemGroup> inside {{PROJECT NAME}}.server.csproj
@@ -58,7 +58,7 @@ C# + Vue Template Setup
 		code .
 
     Paste Auth info into env.js:
-export const baseURL = dev ? 'http://localhost:5001' : ''
+export const baseURL = dev ? 'https://localhost:5001' : ''
 export const domain = 'samwise.us.auth0.com'
 export const audience = 'https://test-api.com'
 export const clientId = 'mC2vIZZ2G5J7rtlFOcbUWkcQSygfUbBF'
