@@ -10,23 +10,22 @@ C# + Vue Template Setup
 2. Inside Project:
 	bcw-create
 		Vue Starter
-        {{PROJECT NAME}}-client
-		Rename to {{PROJECT NAME}}.client
+        client
 
-	dotnet new webapi -o {{PROJECT NAME}}.server
+	dotnet new webapi -o server
 
     git init
 
 
 
 3. Open Server:
-	cd {{PROJECT NAME}}.server
+	cd server
 		dotnet new gitignore
 		git add .
 		dotnet restore
         code .
 
-    replace the <ItemGroup> inside {{PROJECT NAME}}.server.csproj
+    replace the <ItemGroup> inside server.csproj
 <ItemGroup>
   <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3"/>
   <PackageReference Include="CodeWorks.Auth0Provider" Version="1.0.3"/>
@@ -52,7 +51,7 @@ C# + Vue Template Setup
 
 
 4. Open Client:
-	cd {{PROJECT NAME}}.client
+	cd client
 		git add .
 		npm i => npm audit fix if necessary
 		code .
@@ -65,7 +64,7 @@ export const clientId = 'mC2vIZZ2G5J7rtlFOcbUWkcQSygfUbBF'
 
     In vue.config.js
         Replace:
-            outputDir: '../{{PROJECT NAME}}.server/wwwroot',
+            outputDir: '../server/wwwroot',
 
 
 
@@ -75,11 +74,11 @@ export const clientId = 'mC2vIZZ2G5J7rtlFOcbUWkcQSygfUbBF'
 {
     "folders": [
         {
-            "path": "{{PROJECT NAME}}.client",
+            "path": "client",
             "name": "Client"
         },
         {
-            "path": "{{PROJECT NAME}}.server",
+            "path": "server",
             "name": "Server"
         }
     ],
@@ -128,6 +127,6 @@ export const clientId = 'mC2vIZZ2G5J7rtlFOcbUWkcQSygfUbBF'
 7. Auth Hookups
 	Remove Controllers Folder & Weather
 	Paste Models, Controllers, Services, and Repositories Folders
-	Rename namespaces to {{PROJECT NAME}}.server
+	Rename namespaces to server
 
 	Paste template code into Startup.cs
